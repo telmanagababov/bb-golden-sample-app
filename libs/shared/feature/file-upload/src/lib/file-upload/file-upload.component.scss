@@ -1,0 +1,38 @@
+@import '@backbase/ui-ang/scss/main';
+
+.file-drop-zone {
+  border: 1px dashed $color-border-default;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  text-align: center;
+  cursor: pointer;
+  background-color: $color-background-surface-1;
+
+  &:hover {
+    background-color: $color-background-surface-2;
+  }
+
+  .bb-icon-ui {
+    color: $color-foreground-support;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    margin-bottom: $spacing-xs;
+  }
+
+  .text-muted {
+    font-size: $font-size-sm;
+    color: $color-foreground-disabled !important;
+  }
+}
+
+ul {
+  list-style: disc;
+  padding-left: $spacing-lg;
+  margin-bottom: 0;
+
+  li {
+    margin-bottom: $spacing-xs;
+  }
+}

@@ -61,6 +61,7 @@ import {
 import { NavigationMenuModule } from './navigation-menu/navigation-menu.module';
 import { appConfig } from './app.config';
 import { TransactionSigningModule } from '@backbase/identity-auth/transaction-signing';
+import { FileUploadModule } from '@backbase/shared/feature/file-upload';
 
 @NgModule({
   declarations: [AppComponent],
@@ -100,6 +101,7 @@ import { TransactionSigningModule } from '@backbase/identity-auth/transaction-si
     }),
     ActivityMonitorModule,
     NavigationMenuModule,
+    FileUploadModule,
   ],
   providers: [
     ...(environment.mockProviders || []),
