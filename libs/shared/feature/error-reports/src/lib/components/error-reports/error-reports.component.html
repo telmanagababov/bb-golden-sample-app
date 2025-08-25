@@ -1,4 +1,8 @@
-<bb-modal-ui [isOpen]="isOpen" [modalOptions]="modalOptions" (cancel)="onClose()">
+<bb-modal-ui
+  [isOpen]="isOpen"
+  [modalOptions]="modalOptions"
+  (cancel)="onClose()"
+>
   <bb-modal-header-ui>
     <ng-template bbCustomModalHeader>
       <h2 class="modal-title" id="error-report-modal-title">{{ title }}</h2>
@@ -17,7 +21,7 @@
     <ng-template bbCustomModalBody>
       <p class="bb-block bb-block--lg">{{ description }}</p>
 
-      <bb-tabs-ui
+      <!-- <bb-tabs-ui
         [activeTab]="activeTab"
         (tabChange)="onTabChange($event)"
         class="bb-block bb-block--lg"
@@ -66,10 +70,10 @@
             ></bb-amount-ui>
           </ng-template>
         </bb-table-column>
-      </bb-table-ui>
+      </bb-table-ui> -->
 
       <div class="d-flex justify-content-center bb-block bb-block--lg">
-        <bb-pagination-ui
+        <!-- <bb-pagination-ui
           [collectionSize]="totalItems"
           [pageSize]="itemsPerPage"
           [(page)]="currentPage"
@@ -77,7 +81,7 @@
           [maxSize]="5"
           [rotate]="true"
           [boundaryLinks]="true"
-        ></bb-pagination-ui>
+        ></bb-pagination-ui> -->
       </div>
     </ng-template>
   </bb-modal-body-ui>

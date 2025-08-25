@@ -1,24 +1,24 @@
-import { Component, inject, Optional } from '@angular/core';
+import { AsyncPipe, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertModule } from '@backbase/ui-ang/alert';
-import { LoadingIndicatorModule } from '@backbase/ui-ang/loading-indicator';
-import { NgIf, NgSwitchCase, AsyncPipe, NgSwitch } from '@angular/common';
 import {
-  MakeTransferJourneyConfiguration,
   ErrorStatus,
+  MakeTransferJourneyConfiguration,
   MakeTransferJourneyState,
-  TransferLoadingStatus,
   MakeTransferPermissionsService,
+  TransferLoadingStatus,
 } from '@backbase/transfer-journey/internal/data-access';
 import {
   Transfer,
   TransferSubmitEvent,
 } from '@backbase/transfer-journey/internal/shared-data';
 import { MakeTransferFormComponent } from '@backbase/transfer-journey/internal/ui';
+import { AlertModule } from '@backbase/ui-ang/alert';
+import { LoadingIndicatorModule } from '@backbase/ui-ang/loading-indicator';
 
-import { map } from 'rxjs/operators';
 import { Tracker } from '@backbase/foundation-ang/observability';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   templateUrl: 'make-transfer-view.component.html',
@@ -33,18 +33,18 @@ import { Observable } from 'rxjs';
   ],
 })
 export class MakeTransferViewComponent {
-  private readonly route: ActivatedRoute = inject(ActivatedRoute);
-  private readonly router: Router = inject(Router);
-  private readonly transferStore: MakeTransferJourneyState = inject(
+  readonly route: ActivatedRoute = inject(ActivatedRoute);
+  readonly router: Router = inject(Router);
+  readonly transferStore: MakeTransferJourneyState = inject(
     MakeTransferJourneyState
   );
-  private readonly permissions: MakeTransferPermissionsService = inject(
+  readonly permissions: MakeTransferPermissionsService = inject(
     MakeTransferPermissionsService
   );
-  private readonly config: MakeTransferJourneyConfiguration = inject(
+  readonly config: MakeTransferJourneyConfiguration = inject(
     MakeTransferJourneyConfiguration
   );
-  private readonly tracker: Tracker | null = inject(Tracker, {
+  readonly tracker: Tracker | null = inject(Tracker, {
     optional: true,
   });
 

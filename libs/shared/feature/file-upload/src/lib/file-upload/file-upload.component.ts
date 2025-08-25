@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RadioButtonModule } from '@backbase/ui-ang/radio-button';
+import { Component } from '@angular/core';
 import { IconModule } from '@backbase/ui-ang/icon';
-import { HeadingModule } from '@backbase/ui-ang/heading';
 
 @Component({
   selector: 'bb-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule, IconModule],
 })
 export class FileUploadComponent {
   selectedWireType: 'domestic' | 'international' = 'domestic';

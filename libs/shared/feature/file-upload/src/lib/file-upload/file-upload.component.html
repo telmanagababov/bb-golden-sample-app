@@ -1,16 +1,19 @@
 <div class="bb-card">
   <div class="bb-card__header">
-    <bb-heading-ui
+    <!-- <bb-heading-ui
       heading="File upload"
       headingType="h2"
       class="bb-heading-widget__heading"
-    ></bb-heading-ui>
+    ></bb-heading-ui> -->
+    <h2>File upload</h2>
   </div>
   <div class="bb-card__body">
     <div class="bb-block bb-block--lg">
       <h3 class="bb-heading-widget__heading">Domestic wire</h3>
       <div class="d-flex align-items-center">
-        <bb-radio-button-ui
+        <option value="domestic">Domestic Wire</option>
+        <option value="international">International Wire</option>
+        <!-- <bb-radio-button-ui
           name="wireType"
           value="domestic"
           [(ngModel)]="selectedWireType"
@@ -26,7 +29,7 @@
           class="ms-4"
         >
           International Wire
-        </bb-radio-button-ui>
+        </bb-radio-button-ui> -->
       </div>
     </div>
 
@@ -54,7 +57,9 @@
       <h3 class="bb-heading-widget__heading">File requirements</h3>
       <ul>
         <li>Do not use commas in amounts. E.g. use 1000 not 1,000</li>
-        <li>Do not use currency symbols in amounts. E.g. use 1000.00 not $1,000.00</li>
+        <li>
+          Do not use currency symbols in amounts. E.g. use 1000.00 not $1,000.00
+        </li>
         <li><a href="javascript:void(0)" class="bb-link">File example</a></li>
       </ul>
     </div>

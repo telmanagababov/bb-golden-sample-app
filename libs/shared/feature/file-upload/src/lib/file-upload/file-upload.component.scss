@@ -3,7 +3,7 @@
 .file-drop-zone {
   border: 1px dashed $color-border-default;
   border-radius: $border-radius-md;
-  padding: $spacing-lg;
+  padding: $spacer-lg;
   text-align: center;
   cursor: pointer;
   background-color: $color-background-surface-1;
@@ -14,11 +14,11 @@
 
   .bb-icon-ui {
     color: $color-foreground-support;
-    margin-bottom: $spacing-sm;
+    margin-bottom: $spacer-sm;
   }
 
   p {
-    margin-bottom: $spacing-xs;
+    margin-bottom: $spacer-xs;
   }
 
   .text-muted {
@@ -29,10 +29,10 @@
 
 ul {
   list-style: disc;
-  padding-left: $spacing-lg;
+  padding-left: $spacer-lg;
   margin-bottom: 0;
 
   li {
-    margin-bottom: $spacing-xs;
+    margin-bottom: $spacer-xs;
   }
 }

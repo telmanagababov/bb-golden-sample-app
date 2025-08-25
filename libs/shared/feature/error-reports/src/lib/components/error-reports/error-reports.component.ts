@@ -1,4 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AmountModule } from '@backbase/ui-ang/amount';
+import { IconModule } from '@backbase/ui-ang/icon';
+import { ModalModule } from '@backbase/ui-ang/modal';
+import { PaginationModule } from '@backbase/ui-ang/pagination';
+import { TableModule } from '@backbase/ui-ang/table';
 import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorReportItem } from '../../models/error-report.model';
 
@@ -6,12 +12,21 @@ import { ErrorReportItem } from '../../models/error-report.model';
   selector: 'bb-error-reports',
   templateUrl: './error-reports.component.html',
   styleUrls: ['./error-reports.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    ModalModule,
+    TableModule,
+    IconModule,
+    AmountModule,
+    PaginationModule,
+  ],
 })
 export class ErrorReportsComponent {
   @Input() isOpen = false;
   @Input() title = 'Error report';
-  @Input() description = 'The transfers below were excluded from the upload due to errors or warnings.';
+  @Input() description =
+    'The transfers below were excluded from the upload due to errors or warnings.';
   @Input() warnings: ErrorReportItem[] = [
     {
       index: 1,
@@ -116,7 +131,7 @@ export class ErrorReportsComponent {
   ];
   @Input() errors: ErrorReportItem[] = []; // Placeholder for actual errors
 
-  @Output() close = new EventEmitter<void>();
+  @Output() closeModal = new EventEmitter<void>();
 
   activeTab: 'warnings' | 'errors' = 'warnings';
   currentPage = 1;
@@ -139,11 +154,13 @@ export class ErrorReportsComponent {
   }
 
   get totalItems(): number {
-    return this.activeTab === 'warnings' ? this.warnings.length : this.errors.length;
+    return this.activeTab === 'warnings'
+      ? this.warnings.length
+      : this.errors.length;
   }
 
   onClose(): void {
-    this.close.emit();
+    this.closeModal.emit();
   }
 
   onTabChange(tab: 'warnings' | 'errors'): void {

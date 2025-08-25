@@ -1,8 +1,8 @@
-import { Component, inject, Inject, Optional } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { combineLatest, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
 
 import {
   ScreenViewTrackerEventPayload,
@@ -10,20 +10,20 @@ import {
   TrackerModule,
 } from '@backbase/foundation-ang/observability';
 
+import { AmountModule } from '@backbase/ui-ang/amount';
 import { BadgeModule } from '@backbase/ui-ang/badge';
 import { LoadingIndicatorModule } from '@backbase/ui-ang/loading-indicator';
-import { AmountModule } from '@backbase/ui-ang/amount';
 
 import {
-  TransactionsCommunicationService,
-  TRANSACTIONS_JOURNEY_COMMUNICATION_SERIVCE,
   ArrangementsService,
+  TRANSACTIONS_JOURNEY_COMMUNICATION_SERIVCE,
+  TransactionsCommunicationService,
   TransactionsHttpService,
 } from '@backbase/transactions-journey/internal/data-access';
 
+import { TransactionListTrackerEvent } from '@backbase/transactions-journey/internal/shared-data';
 import { TextFilterComponent } from '@backbase/transactions-journey/internal/ui';
 import { FilterTransactionsPipe } from '@backbase/transactions-journey/internal/util';
-import { TransactionListTrackerEvent } from '@backbase/transactions-journey/internal/shared-data';
 import { TransactionItemComponent } from '../transaction-item/transaction-item.component';
 
 @Component({
@@ -45,6 +45,18 @@ import { TransactionItemComponent } from '../transaction-item/transaction-item.c
   providers: [TransactionsHttpService],
 })
 export class TransactionsViewComponent {
+  private readonly route: ActivatedRoute = inject(ActivatedRoute);
+  private readonly router: Router = inject(Router);
+  private readonly transactionsService: TransactionsHttpService = inject(
+    TransactionsHttpService
+  );
+  private readonly arrangementsService: ArrangementsService =
+    inject(ArrangementsService);
+  private readonly externalCommunicationService: TransactionsCommunicationService =
+    inject(TRANSACTIONS_JOURNEY_COMMUNICATION_SERIVCE);
+  private readonly tracker: Tracker | null = inject(Tracker, {
+    optional: true,
+  });
   public title = this.route.snapshot.data['title'];
 
   public filter = '';
@@ -87,19 +99,6 @@ export class TransactionsViewComponent {
   public searchQuery$ = this.route.queryParamMap.pipe(
     map((params) => params.get('search') ?? '')
   );
-
-  private readonly route: ActivatedRoute = inject(ActivatedRoute);
-  private readonly router: Router = inject(Router);
-  private readonly transactionsService: TransactionsHttpService = inject(
-    TransactionsHttpService
-  );
-  private readonly arrangementsService: ArrangementsService =
-    inject(ArrangementsService);
-  private readonly externalCommunicationService: TransactionsCommunicationService =
-    inject(TRANSACTIONS_JOURNEY_COMMUNICATION_SERIVCE);
-  private readonly tracker: Tracker | null = inject(Tracker, {
-    optional: true,
-  });
 
   search(ev: string) {
     this.filter = ev || '';
