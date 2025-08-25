@@ -1,0 +1,50 @@
+@import '@backbase/ui-ang/scss/main';
+
+.modal-title {
+  margin-bottom: 0;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: auto;
+  cursor: pointer;
+
+  .bb-icon-ui {
+    color: $color-foreground-default;
+    font-size: $font-size-lg;
+  }
+}
+
+.text-warning {
+  color: $color-foreground-warning !important;
+}
+
+.bb-table-ui {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: $spacing-md;
+    border-bottom: 1px solid $color-border-subtle;
+    text-align: left;
+  }
+
+  th {
+    font-weight: $font-weight-bold;
+    color: $color-foreground-support;
+  }
+
+  td {
+    color: $color-foreground-default;
+  }
+
+  .text-end {
+    text-align: right;
+  }
+}
+
+.bb-pagination-ui {
+  margin-top: $spacing-lg;
+}

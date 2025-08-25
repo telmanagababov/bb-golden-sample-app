@@ -1,0 +1,84 @@
+<bb-modal-ui [isOpen]="isOpen" [modalOptions]="modalOptions" (cancel)="onClose()">
+  <bb-modal-header-ui>
+    <ng-template bbCustomModalHeader>
+      <h2 class="modal-title" id="error-report-modal-title">{{ title }}</h2>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="onClose()"
+      >
+        <bb-icon-ui name="close"></bb-icon-ui>
+      </button>
+    </ng-template>
+  </bb-modal-header-ui>
+
+  <bb-modal-body-ui>
+    <ng-template bbCustomModalBody>
+      <p class="bb-block bb-block--lg">{{ description }}</p>
+
+      <bb-tabs-ui
+        [activeTab]="activeTab"
+        (tabChange)="onTabChange($event)"
+        class="bb-block bb-block--lg"
+      >
+        <bb-tab-ui tabId="warnings" tabTitle="Warnings"></bb-tab-ui>
+        <bb-tab-ui tabId="errors" tabTitle="Errors"></bb-tab-ui>
+      </bb-tabs-ui>
+
+      <bb-table-ui [data]="displayedItems" class="bb-block bb-block--lg">
+        <bb-table-column header="Warning details">
+          <ng-template let-item="row">
+            <div class="d-flex align-items-center">
+              <span class="me-2">{{ item.index }}</span>
+              <bb-icon-ui name="warning" class="text-warning me-1"></bb-icon-ui>
+              <span>{{ item.type }}</span>
+            </div>
+          </ng-template>
+        </bb-table-column>
+        <bb-table-column header="From">
+          <ng-template let-item="row">
+            <div>
+              <strong>{{ item.fromAccountName }}</strong><br />
+              <span>{{ item.fromAccountNumber }}</span>
+            </div>
+          </ng-template>
+        </bb-table-column>
+        <bb-table-column header="To">
+          <ng-template let-item="row">
+            <div>
+              <strong>{{ item.toAccountName }}</strong><br />
+              <span>{{ item.toAccountNumber }}</span>
+            </div>
+          </ng-template>
+        </bb-table-column>
+        <bb-table-column header="Execution date">
+          <ng-template let-item="row">
+            {{ item.executionDate }}
+          </ng-template>
+        </bb-table-column>
+        <bb-table-column header="Amount" class="text-end">
+          <ng-template let-item="row">
+            <bb-amount-ui
+              [amount]="item.amount.value"
+              [currency]="item.amount.currency"
+              [mapCurrency]="true"
+            ></bb-amount-ui>
+          </ng-template>
+        </bb-table-column>
+      </bb-table-ui>
+
+      <div class="d-flex justify-content-center bb-block bb-block--lg">
+        <bb-pagination-ui
+          [collectionSize]="totalItems"
+          [pageSize]="itemsPerPage"
+          [(page)]="currentPage"
+          (pageChange)="onPageChange($event)"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+        ></bb-pagination-ui>
+      </div>
+    </ng-template>
+  </bb-modal-body-ui>
+</bb-modal-ui>
