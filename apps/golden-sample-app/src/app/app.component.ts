@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { LayoutService } from '@backbase/ui-ang/layout';
-import { OAuthService } from 'angular-oauth2-oidc';
 import {
   LogoutTrackerEvent,
   Tracker,
 } from '@backbase/foundation-ang/observability';
+import { LayoutService } from '@backbase/ui-ang/layout';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
 
 @Component({
@@ -17,7 +17,7 @@ export class AppComponent {
   isAuthenticated = false;
 
   private readonly oAuthService: OAuthService = inject(OAuthService);
-  private readonly layoutService: LayoutService = inject(LayoutService);
+  protected readonly layoutService: LayoutService = inject(LayoutService);
   private readonly tracker: Tracker | null = inject(Tracker, {
     optional: true,
   });
